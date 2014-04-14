@@ -1,7 +1,18 @@
 class Bike
-  
+ 
+  @broken = false
+
   def broken?
-    false 
+    @broken 
+  end
+
+  def break!
+    @broken = true
+    self
+  end
+
+  def fix!
+    @broken = false
   end
 
 end
