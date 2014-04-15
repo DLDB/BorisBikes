@@ -1,15 +1,17 @@
+require_relative('./bike_container')
+
 class Van
-
-  def initialize
-    @bikes = []
-  end
-  
-  def bike_count
-    @bikes.count
+  include BikeContainer
+  def initialize(options = {})
+    self.capacity = options.fetch(:capacity, capacity)
+    self.bikes
   end
 
-  def pickup(bike)
-    @bikes << bike
-  end
+  alias :pickup :load
+  # def pickup(bike)
+  #   @bikes << bike
+  # end
+
+
 
 end

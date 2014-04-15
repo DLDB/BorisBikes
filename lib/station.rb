@@ -13,21 +13,12 @@ class DockingStation
   self.bikes
   end
 
-  def dock(bike)
-    @bikes << bike
-  end
+  alias :dock :load
 
-  def release(bike)
-    @bikes.pop
-  end
+  alias :release :offload
 
-  def full?
-    return false if bike_count < capacity
-    true
-  end
-
-  def available_bikes
-    @bikes.select {|bike| !bike.broken?} 
-  end
+  alias :available_bikes :functioning_bikes
+  #   @bikes.select {|bike| !bike.broken?} 
+  # end
 end
 

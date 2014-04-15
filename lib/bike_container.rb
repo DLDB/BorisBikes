@@ -34,7 +34,7 @@ module BikeContainer
 
   #it should provide a list of functioning bikes
   def functioning_bikes
-    @bikes.reject {|bike| bike == @broken}
+    @bikes.reject {|bike| bike.broken?}
   end
 
   #it should provide a list of broken bikes
@@ -44,6 +44,6 @@ module BikeContainer
 
   #it should know when it's full
   def full?
-    bike_count == capacity
+    bike_count >= capacity
   end
 end
