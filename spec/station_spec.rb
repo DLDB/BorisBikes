@@ -2,7 +2,7 @@ require 'station'
 
 describe DockingStation do
 
-  let (:station) {DockingStation.new(:capacity=>20)}
+  let (:station) {DockingStation.new}
   let (:bike) {double :bike}
 
   it 'should start with no bikes' do
