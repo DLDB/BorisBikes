@@ -3,7 +3,7 @@ require 'station'
 describe DockingStation do
 
   let (:station) {DockingStation.new(:capacity=>20)}
-  let (:bike) {double(:bike, {})}
+  let (:bike) {double :bike}
 
   it 'should start with no bikes' do
     #we expect the station to have 0 bikes
@@ -28,7 +28,16 @@ describe DockingStation do
     expect(station).to be_full
   end
 
+  it 'should provide the list of available bikes' do
+    working_bike = double :bike, broken?: false
+    broken_bike = double :bike, break!: true, broken?: true
+    # broken_bike.break!
+    station.dock(working_bike)
+    station.dock(broken_bike)
+    expect(station.available_bikes).to eq([working_bike])
+  end
 
+    
 
 
 

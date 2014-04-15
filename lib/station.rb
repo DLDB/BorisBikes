@@ -24,5 +24,8 @@ class DockingStation
     true
   end
 
+  def available_bikes
+    @bikes.select {|bike| !bike.broken?} 
+  end
 end
 
