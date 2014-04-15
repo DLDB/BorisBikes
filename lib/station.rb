@@ -15,12 +15,11 @@ class DockingStation
 
   alias :dock :load
 
-  alias :release_functioning :offload_functioning
+  alias :release_functioning_bike :offload_functioning_bike
 
-  alias :release_broken :offload_broken
+  alias :release_broken_bike :offload_broken_bike
 
   alias :available_bikes :functioning_bikes
-  #   @bikes.select {|bike| !bike.broken?} 
-  # end
+
 end
 

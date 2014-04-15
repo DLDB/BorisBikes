@@ -26,7 +26,7 @@ describe DockingStation do
 
   it 'should release a functioning bike' do
     load_bike_doubles_into_(station)
-    station.release_functioning(bike)
+    station.release_functioning_bike
     expect(station.bike_count).to eq(1)
   end
 
@@ -43,7 +43,7 @@ describe DockingStation do
 
   it 'should release a broken bike' do
     load_bike_doubles_into_(station)
-    station.release_broken(bike)
+    station.release_broken_bike
     expect(station.functioning_bikes.count).to eq 1
     expect(station.broken_bikes.count).to eq 0
   end

@@ -28,7 +28,7 @@ module BikeContainer
   end
 
   #it should be able to release a functional bike
-  def offload_functioning(bike)
+  def offload_functioning_bike
     released_bike = functioning_bikes.pop
     @bikes.delete(released_bike)
     released_bike
@@ -45,7 +45,7 @@ module BikeContainer
   end
 
   #REPETITION!!
-  def offload_broken(bike)
+  def offload_broken_bike
     released_bike = broken_bikes.pop
     @bikes.delete(released_bike)
     released_bike
