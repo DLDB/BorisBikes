@@ -27,9 +27,11 @@ module BikeContainer
     @bikes << bike
   end
 
-  #it should be able to release a bike
-  def offload(bike)
-    @bikes.pop
+  #it should be able to release a functional bike
+  def offload_functioning(bike)
+    released_bike = functioning_bikes.pop
+    @bikes.delete(released_bike)
+    released_bike
   end 
 
   #it should provide a list of functioning bikes
@@ -39,11 +41,20 @@ module BikeContainer
 
   #it should provide a list of broken bikes
   def broken_bikes
-    @bikes.select {|bike| bike == @broken}
+    @bikes.select {|bike| bike.broken?}
+  end
+
+  #REPETITION!!
+  def offload_broken(bike)
+    released_bike = broken_bikes.pop
+    @bikes.delete(released_bike)
+    released_bike
   end
 
   #it should know when it's full
   def full?
     bike_count >= capacity
   end
+
+  
 end

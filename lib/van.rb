@@ -8,10 +8,5 @@ class Van
   end
 
   alias :pickup :load
-  # def pickup(bike)
-  #   @bikes << bike
-  # end
-
-
 
 end
