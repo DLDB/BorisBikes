@@ -8,5 +8,5 @@ class Garage
     bike.fix!
   end
 
-
+  
 end

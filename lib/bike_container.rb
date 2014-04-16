@@ -2,6 +2,11 @@ module BikeContainer
 
   DEFAULT_CAPACITY = 10
 
+  def initialize(options = {})
+    self.capacity = options.fetch(:capacity, capacity)
+    self.bikes
+  end
+
   # when created container should have an empty array of bikes
   def bikes
     @bikes ||= []
@@ -56,5 +61,15 @@ module BikeContainer
     bike_count >= capacity
   end
 
+  def should_collect?(container)
+    !self.full? && container.broken_bikes.count >= 1 
+  end
+
+  def demand_bikes_from(container)
+    while should_collect?(container) do
+      collected_bike = container.release_broken_bike
+      pickup(collected_bike)
+    end
+  end
   
 end

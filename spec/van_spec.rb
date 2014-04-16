@@ -6,6 +6,7 @@ describe 'Van' do
   let(:broken_bike){double :bike, broken?: true}
   let(:station){double :station, release_broken_bike: broken_bike, broken_bikes: [bike]}
   #let(:station){double :station}
+  
   it 'should start with no bikes' do
     expect(van.bike_count).to eq 0
   end  
@@ -28,7 +29,10 @@ describe 'Van' do
   end
 
   it 'should know when there is space on the van and a bike to be collected' do
-    expect(van.should_collect?(station))
+    expect(van.should_collect?(station)).to be_true
   end
+
+
+
 
 end
