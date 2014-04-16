@@ -12,8 +12,8 @@ shared_examples "BikeContainer" do
   def load_bike_doubles_into_(holder)
     working_bike = double :bike, broken?: false
     broken_bike = double :bike, break!: true, broken?: true
-    holder.dock(working_bike)
-    holder.dock(broken_bike)
+    holder.load(working_bike)
+    holder.load(broken_bike)
   end
 
   it 'should start with no bikes' do
@@ -21,39 +21,39 @@ shared_examples "BikeContainer" do
     expect(holder.bike_count).to eq 0
   end
 
-  it 'should dock a bike' do  
-    station.dock(bike)
-    #now we expect the station to have 1 bike
-    expect(station.bike_count).to eq 1
+  it 'should load a bike' do  
+    holder.load(bike)
+    #now we expect the holder to have 1 bike
+    expect(holder.bike_count).to eq 1
   end
 
-  it 'should release a functioning bike' do
-    load_bike_doubles_into_(station)
-    station.release_functioning_bike
-    expect(station.bike_count).to eq(1)
+  it 'should offload a functioning bike' do
+    load_bike_doubles_into_(holder)
+    holder.offload_functioning_bike
+    expect(holder.bike_count).to eq(1)
   end
 
   it "should know when it's full" do
-    expect(station).not_to be_full
-    10.times { station.dock(bike) }
-    expect(station).to be_full
+    expect(holder).not_to be_full
+    10.times { holder.load(bike) }
+    expect(holder).to be_full
   end
 
   it 'should provide the list of functioning bikes' do
-    load_bike_doubles_into_(station)
-    expect(station.available_bikes.count).to eq 1
+    load_bike_doubles_into_(holder)
+    expect(holder.functioning_bikes.count).to eq 1
   end
 
-  it 'should release a broken bike' do
-    load_bike_doubles_into_(station)
-    station.release_broken_bike
-    expect(station.functioning_bikes.count).to eq 1
-    expect(station.broken_bikes.count).to eq 0
+  it 'should offload a broken bike' do
+    load_bike_doubles_into_(holder)
+    holder.offload_broken_bike
+    expect(holder.functioning_bikes.count).to eq 1
+    expect(holder.broken_bikes.count).to eq 0
   end
 
   it 'can return an array containing only non-broken bikes' do
-    load_bike_doubles_into_(station)
-    expect(station.available_bikes.count).to eq 1
+    load_bike_doubles_into_(holder)
+    expect(holder.functioning_bikes.count).to eq 1
   end
 
 end

@@ -1,15 +1,19 @@
 require 'van'
+require 'bike_container_spec'
 
-describe 'Van' do
+describe Van do
+  it_should_behave_like "BikeContainer"
+
+
   let(:van){Van.new}
   let(:bike){double :bike}
   let(:broken_bike){double :bike, broken?: true}
   let(:station){double :station, release_broken_bike: broken_bike, broken_bikes: [bike]}
   #let(:station){double :station}
   
-  it 'should start with no bikes' do
-    expect(van.bike_count).to eq 0
-  end  
+  # it 'should start with no bikes' do
+  #   expect(van.bike_count).to eq 0
+  # end  
 
   it 'should be able to accept bikes' do
     van.pickup(bike)
