@@ -33,7 +33,7 @@ module BikeContainer
 
   #it should be able to accept a bike
   def load(bike)
-    @bikes << bike
+  self.full? ? "Full!" : @bikes << bike
   end
 
   #it should provide a list of functioning bikes

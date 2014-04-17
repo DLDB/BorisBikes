@@ -40,6 +40,11 @@ shared_examples "BikeContainer" do
       expect(holder).not_to be_full
     end
 
+    it 'should return an error if load is called on a full container' do
+    11.times{holder.load(bike)}
+    expect(holder.load(bike)).to eq 'Full!'
+    end
+
   end
 
   context 'Working bikes' do
