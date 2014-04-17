@@ -18,13 +18,11 @@ shared_examples "BikeContainer" do
   context 'General Functions' do
 
     it 'should start with no bikes' do
-      #we expect the holder to have 0 bikes
       expect(holder.bike_count).to eq 0
     end
 
     it 'should load a bike' do  
       holder.load(bike)
-      #now we expect the holder to have 1 bike
       expect(holder.bike_count).to eq 1
     end
 

@@ -4,8 +4,13 @@ class Garage
 
   include BikeContainer
 
-  def repair!(bike)
-    bike.fix!
+  # def initialize(options = {})
+  #   self.capacity = options.fetch(:capacity, capacity)
+  #   self.bikes
+  # end
+
+  def repair!
+    bikes.each {|bike| bike.fix!}
   end
 
   

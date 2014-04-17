@@ -1,11 +1,12 @@
 module BikeContainer
 
   DEFAULT_CAPACITY = 10
+  
 
-  def initialize(options = {})
-    self.capacity = options.fetch(:capacity, capacity)
-    self.bikes
-  end
+  # def initialize(options = {})
+  #   self.capacity = options.fetch(:capacity, capacity)
+  #   self.bikes
+  # end
 
   # when created container should have an empty array of bikes
   def bikes
@@ -17,10 +18,6 @@ module BikeContainer
     @capacity ||= DEFAULT_CAPACITY
   end
 
-  def capacity=(value)
-    @capacity = value
-  end
-
 #it should know when it's full
   def full?
     bike_count >= capacity
@@ -28,7 +25,7 @@ module BikeContainer
   
   # the container should be able to count the bikes
   def bike_count
-    @bikes.count
+    bikes.count
   end
 
   #it should be able to accept a bike
@@ -38,12 +35,12 @@ module BikeContainer
 
   #it should provide a list of functioning bikes
   def functioning_bikes
-    @bikes.reject {|bike| bike.broken?}
+    bikes.reject {|bike| bike.broken?}
   end
 
   #it should provide a list of broken bikes
   def broken_bikes
-    @bikes.select {|bike| bike.broken?}
+    bikes.select {|bike| bike.broken?}
   end
 
   #REPETITION!!?!?
@@ -51,14 +48,14 @@ module BikeContainer
   #it should be able to release a functional bike
   def offload_functioning_bike
     released_bike = functioning_bikes.pop
-    @bikes.delete(released_bike)
+    bikes.delete(released_bike)
     released_bike
   end 
 
   #.. or a broken bike
   def offload_broken_bike
     released_bike = broken_bikes.pop
-    @bikes.delete(released_bike)
+    bikes.delete(released_bike)
     released_bike
   end
 
@@ -82,7 +79,7 @@ module BikeContainer
 
   #.. and can demand as many as possible
   def demand_functioning_bikes_from(container)
-    while should_collect_broken_bikes?(container) do
+    while should_collect_functioning_bikes?(container) do
       collected_bike = container.offload_functioning_bike
       load(collected_bike)
     end
